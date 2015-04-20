@@ -1,6 +1,6 @@
 {
   "name": "syspipe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Access to the operating system native pipe implementation",
   "main": "build/Release/syspipe.node",
   "engines" : { "node" : ">=0.12.0" },

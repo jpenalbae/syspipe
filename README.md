@@ -50,7 +50,8 @@ var pipe = syspipe.pipe();
 var options = { stdio: ['pipe', pipe.write, 'pipe'] };
 var ls = proc.spawn('r2', ['-q0', '/bin/ls'], options);
 
-console.log(pipe);
+var OUT = pipe.read;
+var IN = ls.stdin['_handle'].fd;
 
 
 read = fs.readSync(OUT, buf, 0, 1024, null);
