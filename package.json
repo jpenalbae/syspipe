@@ -1,6 +1,6 @@
 {
   "name": "syspipe",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Access to the operating system native pipe implementation",
   "main": "build/Release/syspipe.node",
   "scripts": {
@@ -36,6 +36,6 @@
   },
   "homepage": "https://github.com/jpenalbae/syspipe",
   "dependencies": {
-    "nan": "^1.8.0"
+    "nan": "~1.8.0"
   }
 }
