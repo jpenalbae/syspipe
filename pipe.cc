@@ -1,36 +1,45 @@
 #include <node.h>
+#include <nan.h>
 
 #if defined _WIN32 || defined _WIN64
    int pipe(int descf[2]) { return -1; }
 #else
 #  include <unistd.h>
 #  include <fcntl.h>
+#  include <errno.h>
+   extern int errno;
 #endif
+
+#define ERRMSG "Could not create pipe"
 
 
 using namespace v8;
 
 
-void syspipe(const FunctionCallbackInfo<Value>& args) {
+NAN_METHOD(syspipe) {
+    NanScope();
 
-   int desc[2];
-   Isolate* isolate = Isolate::GetCurrent();
+    int desc[2];
+    char errmsg[128];
 
-
-   if (pipe(desc)) {
-      isolate->ThrowException(Exception::Error(
-        String::NewFromUtf8(isolate, "Could not create pipe")));
-      return;
+    if (pipe(desc)) {
+#if defined _WIN32 || defined _WIN64
+        return NanThrowError(ERRMSG);
+#else
+        snprintf(errmsg, sizeof(errmsg), "%s (%s)", ERRMSG, strerror(errno));
+        return NanThrowError(errmsg);
+#endif
    }
 
-   Local<Object> obj = Object::New(isolate);
-   obj->Set(String::NewFromUtf8(isolate, "read"), v8::Integer::New(isolate, desc[0]));
-   obj->Set(String::NewFromUtf8(isolate, "write"), v8::Integer::New(isolate, desc[1]));
-   args.GetReturnValue().Set(obj);
+   Local<Object> obj = NanNew<Object>();
+   obj->Set(NanNew<String>("read"), NanNew<Integer>(desc[0]));
+   obj->Set(NanNew<String>("write"), NanNew<Integer>(desc[1]));
+   NanReturnValue(obj);
 }
 
 void init(Handle<Object> exports) {
-  NODE_SET_METHOD(exports, "pipe", syspipe);
+    exports->Set(NanNew<String>("pipe"),
+            NanNew<FunctionTemplate>(syspipe)->GetFunction());
 }
 
 NODE_MODULE(syspipe, init)

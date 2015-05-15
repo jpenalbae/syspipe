@@ -1,14 +1,13 @@
 {
   "name": "syspipe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Access to the operating system native pipe implementation",
   "main": "build/Release/syspipe.node",
-  "engines" : { "node" : ">=0.12.0" },
   "scripts": {
     "test": "test.js",
     "install": "node-gyp rebuild"
   },
-   "files": [
+  "files": [
     "README.md",
     "LICENSE",
     "binding.gyp",
@@ -35,6 +34,8 @@
   "bugs": {
     "url": "https://github.com/jpenalbae/syspipe/issues"
   },
-  "homepage": "https://github.com/jpenalbae/syspipe"
+  "homepage": "https://github.com/jpenalbae/syspipe",
+  "dependencies": {
+    "nan": "^1.8.0"
+  }
 }
-
