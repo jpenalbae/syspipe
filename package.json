@@ -1,6 +1,6 @@
 {
   "name": "syspipe",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Access to the operating system native pipe implementation",
   "main": "build/Release/syspipe.node",
   "scripts": {
