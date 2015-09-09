@@ -17,29 +17,29 @@ using namespace v8;
 
 
 NAN_METHOD(syspipe) {
-    NanScope();
+    Nan::HandleScope scope;
 
     int desc[2];
     char errmsg[128];
 
     if (pipe(desc)) {
 #if defined _WIN32 || defined _WIN64
-        return NanThrowError(ERRMSG);
+        return Nan::ThrowError(ERRMSG);
 #else
         snprintf(errmsg, sizeof(errmsg), "%s (%s)", ERRMSG, strerror(errno));
-        return NanThrowError(errmsg);
+        return Nan::ThrowError(errmsg);
 #endif
    }
 
-   Local<Object> obj = NanNew<Object>();
-   obj->Set(NanNew<String>("read"), NanNew<Integer>(desc[0]));
-   obj->Set(NanNew<String>("write"), NanNew<Integer>(desc[1]));
-   NanReturnValue(obj);
+   Local<Object> obj = Nan::New<Object>();
+   obj->Set(Nan::New<String>("read").ToLocalChecked(), Nan::New<Integer>(desc[0]));
+   obj->Set(Nan::New<String>("write").ToLocalChecked(), Nan::New<Integer>(desc[1]));
+   info.GetReturnValue().Set(obj);
 }
 
 void init(Handle<Object> exports) {
-    exports->Set(NanNew<String>("pipe"),
-            NanNew<FunctionTemplate>(syspipe)->GetFunction());
+    exports->Set(Nan::New<String>("pipe").ToLocalChecked(),
+            Nan::New<FunctionTemplate>(syspipe)->GetFunction());
 }
 
 NODE_MODULE(syspipe, init)

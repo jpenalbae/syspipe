@@ -36,6 +36,6 @@
   },
   "homepage": "https://github.com/jpenalbae/syspipe",
   "dependencies": {
-    "nan": "~1.8.0"
+    "nan": "^2.0.5"
   }
 }
