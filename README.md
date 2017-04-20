@@ -1,4 +1,7 @@
 # Syspipe
+
+[![Build Status](https://travis-ci.org/jpnalbae/syspipe.svg?branch=master)](https://travis-ci.org/jpenalbae/syspipe)|
+
 node.js module to access operating system native pipe implementation. For more info check  "man 2 pipe"
 
 This interface simply gives you the ability to call the operating system `pipe` system call. It will return an object with the input and output file descriptors
