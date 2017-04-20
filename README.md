@@ -1,6 +1,6 @@
 # Syspipe
 
-[![Build Status](https://travis-ci.org/jpnalbae/syspipe.svg?branch=master)](https://travis-ci.org/jpenalbae/syspipe)|
+[![Build Status](https://travis-ci.org/jpnalbae/syspipe.svg?branch=master)](https://travis-ci.org/jpenalbae/syspipe)
 
 node.js module to access operating system native pipe implementation. For more info check  "man 2 pipe"
 
