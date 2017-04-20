@@ -1,0 +1,35 @@
+# travis.yml for testing radare2. Initially written in 2014-2016, by jn__.
+
+os:
+  - linux
+  - osx
+
+language: c++
+
+compiler:
+  - g++
+  - clang++
+
+sudo: false
+
+env:
+  - CXX=g++-4.8
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - dc
+      - binutils
+      - cabextract
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - jq
+      - gcc-4.8
+      - g++-4.8
+
+script:
+  - npm install
+  - npm run test

@@ -4,7 +4,7 @@
   "description": "Access to the operating system native pipe implementation",
   "main": "build/Release/syspipe.node",
   "scripts": {
-    "test": "test.js",
+    "test": "semistandard && node test.js",
     "install": "node-gyp rebuild"
   },
   "files": [
@@ -35,6 +35,9 @@
     "url": "https://github.com/jpenalbae/syspipe/issues"
   },
   "homepage": "https://github.com/jpenalbae/syspipe",
+  "devDependencies": {
+    "semistandard": "^10.0.0"
+  },
   "dependencies": {
     "nan": "^2.0.5"
   }
